@@ -3,6 +3,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# virtualenv
+_hypertrans/
+
+# pycharm
+.idea/
+
 # C extensions
 *.so
 
