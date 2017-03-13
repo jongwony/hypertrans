@@ -1,5 +1,0 @@
-# virtualenv activate
-if [ -n "${BASH-}" ] || [ -n "${ZSH_VERSION-}" ] ; then
-    .\_hypertrans\Scripts\activate
-    python -m main.py
-fi
