@@ -1,7 +1,7 @@
 class TransParam:
 
     def __init__(self):
-        self.url = 'https://translate.google.com'
+        self.url = 'translate.google.com'
         self.src = 'en'
         self.dst = 'ko'
         self._sentence = ''

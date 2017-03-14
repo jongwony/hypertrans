@@ -12,7 +12,6 @@ HTTP/2를 통해 Python 콘솔로 translate.google.com을 우회합니다.
 ```
 hyper==0.7.0
 beautifulsoup4==4.5.3
-requests==2.13.0
 ```
 
 #### Virtualenv install
@@ -23,7 +22,6 @@ virtualenv _hypertrans
 
 (Windows) `.\_hypertrans\Scripts\activate`
 
-pip install requests
 pip install hyper
 pip install beautifulsoup4
 
@@ -58,9 +56,9 @@ en->ja: i'm doing well
 私はうまくやってる
 ```
 
-## TODO
+## requests library bug
 
-StreamResetError
+[`with` context manager `close()` bug in *requests* library](//github.com/Lukasa/hyper/issues/306)
 
 ## Reference
 

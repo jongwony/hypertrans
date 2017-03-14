@@ -1,28 +1,17 @@
 # -*- coding: utf-8 -*-
 
-import requests
+from urllib.parse import urlencode
 from parameter import TransParam
+from hyper import HTTP20Connection
+from bs4 import BeautifulSoup
 
-s = requests.Session()
 trans = TransParam()
 res = ''
-
-# HTTP2
-try:
-    from hyper.contrib import HTTP20Adapter
-    s.mount(trans.url, HTTP20Adapter())
-except:
-    raise ImportWarning('hyper package recommended')
-
-# Parser
-try:
-    from bs4 import BeautifulSoup
-except:
-    raise ImportError('BeautifulSoup import Error')
 
 while True:
     sentence = trans.set_sentence()
 
+    # Option
     if sentence is 'q':
         break
 
@@ -33,12 +22,13 @@ while True:
         trans.custom()
         continue
 
-    # GET url parse
-    r = s.get(trans.url, params=trans.build_params())
-    #print(r.url)
+    # HTTP/2
+    with HTTP20Connection(trans.url, port=443) as conn:
+        conn.request('GET', '/?' + urlencode(trans.build_params()))
+        data = conn.get_response().read()
 
-    # Parser
-    soup = BeautifulSoup(r.text, 'html.parser')
+    # tag Parser
+    soup = BeautifulSoup(data, 'html.parser')
     res = soup.find(id='result_box').text
     print(res)
 
