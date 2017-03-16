@@ -1,11 +1,11 @@
 # Windows Powershell Script
-# > .\hypertrans.ps1
+# > ...hypertrans.ps1
 
 # virtualenv activate
-.\_hypertrans\Scripts\activate.ps1
+. $PSScriptRoot\_hypertrans\Scripts\activate.ps1
 
 # module loop
-python main.py
+python $PSScriptRoot\main.py
 
 # virtualenv deactivate
 deactivate
