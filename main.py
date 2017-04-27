@@ -8,19 +8,24 @@ from bs4 import BeautifulSoup
 trans = TransParam()
 res = ''
 
+
+
 while True:
     sentence = trans.set_sentence()
 
     # Option
-    if sentence is 'q':
+    if sentence in ['q', 'ㅂ']:
         break
 
-    if sentence is 's':
-        trans.swap(res)
+    if sentence.endswith('``') or sentence is '':
+        continue
 
-    if sentence is 'c':
+    if sentence in ['c', 'ㅊ']:
         trans.custom()
         continue
+
+    if sentence in ['s', 'ㄴ']:
+        trans.swap(res)
 
     # HTTP/2
     with HTTP20Connection(trans.url, port=443) as conn:
@@ -31,6 +36,3 @@ while True:
     soup = BeautifulSoup(data, 'html.parser')
     res = soup.find(id='result_box').text
     print(res)
-
-
-
