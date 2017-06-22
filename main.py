@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
-
 from urllib.parse import urlencode
 from parameter import TransParam
+from venv import Pathenv
+Pathenv.apply_virtualenv('.py3')
+
 from hyper import HTTP20Connection
 from bs4 import BeautifulSoup
 
