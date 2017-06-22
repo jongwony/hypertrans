@@ -5,6 +5,7 @@ __pycache__/
 
 # virtualenv
 _hypertrans/
+.py3/
 
 # pycharm
 .idea/
