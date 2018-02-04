@@ -11,9 +11,12 @@ trans = TransParam()
 res = ''
 
 
-
 while True:
-    sentence = trans.set_sentence()
+    # stdin once
+    try:
+        sentence = trans.set_sentence()
+    except EOFError:
+        break
 
     # Option
     if sentence in ['q', 'ㅂ']:
