@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 from urllib.parse import urlencode
 from parameter import TransParam
-from venv import Pathenv
-Pathenv.apply_virtualenv('.py3')
 
 from hyper import HTTP20Connection
 from bs4 import BeautifulSoup
@@ -32,12 +30,5 @@ while True:
     if sentence in ['s', 'ㄴ']:
         trans.swap(res)
 
-    # HTTP/2
-    with HTTP20Connection(trans.url, port=443) as conn:
-        conn.request('GET', '/?' + urlencode(trans.build_params()))
-        data = conn.get_response().read()
-
-    # tag Parser
-    soup = BeautifulSoup(data, 'html.parser')
-    res = soup.find(id='result_box').text
+    res = trans.translate()
     print(res)
