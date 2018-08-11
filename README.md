@@ -28,10 +28,17 @@ pip install beautifulsoup4
 pip freeze
 ```
 
+## Setup
+
+```
+export PATH=$PATH:$HOME/.local/bin
+python setup.py install --user
+```
+
 ## Usage
 
 ```
-python main.py
+python google_trans
 ```
 
 #### Options

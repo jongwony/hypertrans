@@ -1,9 +1,6 @@
-# -*- coding: utf-8 -*-
-from urllib.parse import urlencode
+#!/usr/bin/env python
 from parameter import TransParam
 
-from hyper import HTTP20Connection
-from bs4 import BeautifulSoup
 
 trans = TransParam()
 res = ''

@@ -5,7 +5,7 @@
 . $PSScriptRoot\_hypertrans\Scripts\activate.ps1
 
 # module loop
-python $PSScriptRoot\main.py
+python $PSScriptRoot\google_trans
 
 # virtualenv deactivate
 deactivate

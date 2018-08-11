@@ -1,4 +1,6 @@
 from urllib.parse import urlencode
+
+from bs4 import BeautifulSoup
 from hyper import HTTP20Connection
 
 
