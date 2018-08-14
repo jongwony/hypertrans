@@ -1,31 +1,62 @@
 #!/usr/bin/env python
+import sys
+import argparse
+from subprocess import Popen, PIPE
+
 from parameter import TransParam
 
 
-trans = TransParam()
-res = ''
+parser = argparse.ArgumentParser()
+parser.add_argument('--interactive', action='store_true')
+parser.add_argument('--clipboard', action='store_true')
+args = parser.parse_args()
+
+CLIPBOARD = 'pbpaste'
 
 
-while True:
-    # stdin once
-    try:
-        sentence = trans.set_sentence()
-    except EOFError:
-        break
+def interactive_loop():
+    trans = TransParam()
+    res = ''
 
-    # Option
-    if sentence in ['q', 'ㅂ']:
-        break
+    while True:
+        # stdin once
+        try:
+            sentence = trans.set_sentence()
+        except EOFError:
+            break
 
-    if sentence.endswith('``') or sentence is '':
-        continue
+        # Option
+        if sentence in ['q', 'ㅂ']:
+            break
 
-    if sentence in ['c', 'ㅊ']:
-        trans.custom()
-        continue
+        if sentence.endswith('``') or sentence is '':
+            continue
 
-    if sentence in ['s', 'ㄴ']:
-        trans.swap(res)
+        if sentence in ['c', 'ㅊ']:
+            trans.custom()
+            continue
 
-    res = trans.translate()
-    print(res)
+        if sentence in ['s', 'ㄴ']:
+            trans.swap(res)
+
+        res = trans.translate()
+        print(res)
+
+
+def trans_clipboard():
+    sentence, err = Popen(CLIPBOARD, stdout=PIPE, stderr=PIPE, shell=True).communicate()
+
+    if err:
+        raise err
+
+    trans = TransParam(sentence.decode())
+    print(trans.translate())
+
+
+if __name__ == '__main__':
+    if args.interactive:
+        interactive_loop()
+    elif args.clipboard:
+        trans_clipboard()
+    else:
+        raise NotImplementedError
