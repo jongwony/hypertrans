@@ -44,7 +44,9 @@ def interactive_loop():
 
 
 def trans_clipboard():
-    sentence, err = Popen(CLIPBOARD, stdout=PIPE, stderr=PIPE, shell=True).communicate()
+    sentence, err = Popen(
+        CLIPBOARD, stdout=PIPE, stderr=PIPE, shell=True
+    ).communicate()
 
     if err:
         raise err

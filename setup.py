@@ -8,6 +8,6 @@ setup(
     description='google-translate cli',
     author='jongwony',
     author_email='lastone9182@gmail.com',
-    scripts=['google_trans'],
+    scripts=['google_trans', 'parameter.py'],
     install_requires=['hyper', 'BeautifulSoup4'],
 )
